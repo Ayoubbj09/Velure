@@ -1,24 +1,60 @@
-<section class="page-width product-template">
+<section class="section page-width product">
   {% if product != blank %}
-    <div class="product-template__grid">
-      <div>
-        {{ product.featured_image | image_url: width: 1200 | image_tag: class: 'product-template__image' }}
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="{{ routes.root_url }}">Home</a>
+      <span>/</span>
+      <a href="{{ collection.url | default: routes.all_products_collection_url }}">Shop</a>
+      <span>/</span>
+      <span>{{ product.title }}</span>
+    </nav>
+    <div class="product__grid">
+      <div class="product__media">
+        {% for media in product.media %}
+          {{ media | media_tag: image_size: "1200x", class: 'product__image' }}
+        {% else %}
+          {{ product.featured_image | image_url: width: 1200 | image_tag: class: 'product__image' }}
+        {% endfor %}
       </div>
-      <div>
+      <div class="product__info">
         <p class="eyebrow">VELURE</p>
         <h1>{{ product.title }}</h1>
+        <div class="price">
+          <span>{{ product.price | money }}</span>
+          {% if product.compare_at_price_max > product.price %}
+            <s>{{ product.compare_at_price_max | money }}</s>
+          {% endif %}
+        </div>
         <div class="rte">{{ product.description }}</div>
+        {% form 'product', product, class: 'product-form' %}
+          {% if product.has_only_default_variant == false %}
+            <label class="field-label" for="variant-{{ section.id }}">Variant</label>
+            <select id="variant-{{ section.id }}" name="id" class="field">
+              {% for variant in product.variants %}
+                <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %} {% unless variant.available %}disabled{% endunless %}>
+                  {{ variant.title }}{% unless variant.available %} - Sold out{% endunless %}
+                </option>
+              {% endfor %}
+            </select>
+          {% else %}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          {% endif %}
+          <label class="field-label" for="quantity-{{ section.id }}">Quantity</label>
+          <input id="quantity-{{ section.id }}" class="field" type="number" name="quantity" min="1" value="1">
+          <button class="button button--solid" type="submit" {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+            {% if product.selected_or_first_available_variant.available %}Add to cart{% else %}Sold out{% endif %}
+          </button>
+          {{ form | payment_button }}
+        {% endform %}
+        <div class="product__details">
+          <details open><summary>Details</summary><div class="rte">{{ product.description }}</div></details>
+          <details><summary>Ingredients</summary><p>Use the Theme Editor to add the real INCI list later.</p></details>
+          <details><summary>How to use</summary><p>Twist, swipe, and blend as part of your regular skincare routine.</p></details>
+        </div>
       </div>
     </div>
-  {% else %}
-    <h1>Product</h1>
   {% endif %}
 </section>
 
 {% schema %}
-{
-  "name": "Main product",
-  "settings": [],
-  "presets": [{ "name": "Main product" }]
-}
+{"name":"Main product","settings":[],"presets":[{"name":"Main product"}]}
 {% endschema %}

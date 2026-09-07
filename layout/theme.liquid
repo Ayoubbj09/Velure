@@ -3,7 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#f8f3ef">
+    <meta name="theme-color" content="#fff9fa">
+    <meta name="description" content="{{ page_description | escape }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta property="og:site_name" content="{{ shop.name }}">
+    <meta property="og:title" content="{{ page_title | escape }}">
+    <meta property="og:description" content="{{ page_description | escape }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:type" content="{% if template.name == 'product' %}product{% elsif template.name == 'article' %}article{% else %}website{% endif %}">
+    <meta name="twitter:card" content="summary_large_image">
     <title>
       {{ page_title }}
       {% if current_tags %} - {{ current_tags | join: ', ' }}{% endif %}
@@ -17,7 +25,7 @@
   <body class="template-{{ template.name | handle }}">
     <a class="skip-link" href="#MainContent">{{ 'accessibility.skip_to_content' | t }}</a>
     {% section 'header' %}
-    <main id="MainContent" class="page-width" role="main">
+    <main id="MainContent" class="main-content" role="main">
       {{ content_for_layout }}
     </main>
     {% section 'footer' %}

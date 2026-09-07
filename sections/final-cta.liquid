@@ -1,0 +1,10 @@
+<section class="section page-width final-cta">
+  <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+  <h2>{{ section.settings.heading }}</h2>
+  {% if section.settings.button_label != blank %}
+    <a class="button button--solid" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+  {% endif %}
+</section>
+{% schema %}
+{"name":"Final CTA","settings":[{"type":"text","id":"eyebrow","label":"Eyebrow","default":"MAKE GLOW PART OF YOUR EVERYDAY."},{"type":"text","id":"heading","label":"Heading","default":"MAKE GLOW PART OF YOUR EVERYDAY."},{"type":"text","id":"button_label","label":"Button label","default":"SHOP THE BALM"},{"type":"url","id":"button_link","label":"Button link"}],"presets":[{"name":"Final CTA"}]}
+{% endschema %}

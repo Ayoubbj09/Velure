@@ -1,18 +1,46 @@
-<header class="site-header">
+{% liquid
+  assign menu_handle = section.settings.menu
+  assign menu_links = linklists[menu_handle].links
+%}
+
+<header class="site-header{% if section.settings.sticky %} site-header--sticky{% endif %}">
+  {% if section.settings.announcement_text != blank %}
+    <div class="announcement-bar">
+      <div class="page-width announcement-bar__inner">
+        <p>{{ section.settings.announcement_text }}</p>
+      </div>
+    </div>
+  {% endif %}
+
   <div class="page-width site-header__inner">
     <a class="site-header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
-      <span class="site-header__brand">VELURE</span>
+      {{ section.settings.brand_text | default: shop.name }}
     </a>
+
     <nav class="site-header__nav" aria-label="Primary">
-      {% if section.settings.menu != blank %}
+      {% if menu_links != blank %}
         <ul class="site-header__menu">
-          {% for link in linklists[section.settings.menu].links %}
+          {% for link in menu_links %}
             <li><a href="{{ link.url }}">{{ link.title }}</a></li>
           {% endfor %}
         </ul>
+      {% else %}
+        <ul class="site-header__menu">
+          <li><a href="{{ routes.all_products_collection_url }}">Shop</a></li>
+          <li><a href="/pages/about">About</a></li>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/contact">Contact</a></li>
+        </ul>
       {% endif %}
     </nav>
-    <a class="site-header__cart" href="{{ routes.cart_url }}">Cart</a>
+
+    <div class="site-header__actions">
+      {% if shop.customer_accounts_enabled %}
+        <a href="{{ routes.account_url }}" aria-label="Account">Account</a>
+      {% endif %}
+      <a href="{{ routes.search_url }}" aria-label="Search">Search</a>
+      <a href="{{ routes.cart_url }}" aria-label="Cart">Cart ({{ cart.item_count }})</a>
+    </div>
   </div>
 </header>
 
@@ -21,9 +49,27 @@
   "name": "Header",
   "settings": [
     {
+      "type": "text",
+      "id": "brand_text",
+      "label": "Brand text",
+      "default": "VELURE"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement bar text",
+      "default": "FREE SHIPPING ON ORDERS OVER €40"
+    },
+    {
       "type": "link_list",
       "id": "menu",
       "label": "Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "Sticky header",
+      "default": true
     }
   ]
 }

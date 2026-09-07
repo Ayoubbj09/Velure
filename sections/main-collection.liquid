@@ -1,21 +1,25 @@
-<section class="page-width">
-  <h1>{{ collection.title }}</h1>
+<section class="section page-width collection">
+  <header class="collection__header">
+    <p class="eyebrow">VELURE</p>
+    <h1>{{ collection.title }}</h1>
+    {% if collection.description != blank %}<div class="rte">{{ collection.description }}</div>{% endif %}
+  </header>
   {% paginate collection.products by 12 %}
-    <div class="grid">
+    <div class="product-grid">
       {% for product in collection.products %}
-        <a href="{{ product.url }}" class="card">
-          {{ product.featured_image | image_url: width: 800 | image_tag }}
+        <a href="{{ product.url }}" class="product-card">
+          {% if product.featured_image %}
+            {{ product.featured_image | image_url: width: 1000 | image_tag: class: 'product-card__image', loading: 'lazy' }}
+          {% endif %}
           <h2>{{ product.title }}</h2>
+          <p>{{ product.price | money }}</p>
         </a>
       {% endfor %}
     </div>
+    {{ paginate | default_pagination }}
   {% endpaginate %}
 </section>
 
 {% schema %}
-{
-  "name": "Main collection",
-  "settings": [],
-  "presets": [{ "name": "Main collection" }]
-}
+{"name":"Main collection","settings":[],"presets":[{"name":"Main collection"}]}
 {% endschema %}

@@ -1,0 +1,22 @@
+<section class="section page-width featured-product">
+  {% assign featured = section.settings.product %}
+  {% if featured != blank %}
+    <div class="product__grid">
+      <div class="product__media">
+        {% if featured.featured_image %}
+          {{ featured.featured_image | image_url: width: 1400 | image_tag: class: 'product__image', loading: 'lazy' }}
+        {% endif %}
+      </div>
+      <div class="product__info">
+        <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+        <h2>{{ featured.title }}</h2>
+        <div class="price"><span>{{ featured.price | money }}</span>{% if featured.compare_at_price_max > featured.price %}<s>{{ featured.compare_at_price_max | money }}</s>{% endif %}</div>
+        <div class="rte">{{ featured.description }}</div>
+        <a class="button button--solid" href="{{ featured.url }}">View product</a>
+      </div>
+    </div>
+  {% endif %}
+</section>
+{% schema %}
+{"name":"Featured product","settings":[{"type":"text","id":"eyebrow","label":"Eyebrow","default":"FEATURED PRODUCT"},{"type":"product","id":"product","label":"Product"}],"presets":[{"name":"Featured product"}]}
+{% endschema %}

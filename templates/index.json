@@ -1,8 +1,10 @@
 {
   "sections": {
-    "main": {
-      "type": "main-home"
-    }
+    "main": { "type": "main-home" },
+    "featured_product": { "type": "featured-product" },
+    "editorial_copy": { "type": "editorial-copy" },
+    "faq": { "type": "faq-accordion" },
+    "final_cta": { "type": "final-cta" }
   },
-  "order": ["main"]
+  "order": ["main", "featured_product", "editorial_copy", "faq", "final_cta"]
 }
