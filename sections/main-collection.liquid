@@ -1,0 +1,21 @@
+<section class="page-width">
+  <h1>{{ collection.title }}</h1>
+  {% paginate collection.products by 12 %}
+    <div class="grid">
+      {% for product in collection.products %}
+        <a href="{{ product.url }}" class="card">
+          {{ product.featured_image | image_url: width: 800 | image_tag }}
+          <h2>{{ product.title }}</h2>
+        </a>
+      {% endfor %}
+    </div>
+  {% endpaginate %}
+</section>
+
+{% schema %}
+{
+  "name": "Main collection",
+  "settings": [],
+  "presets": [{ "name": "Main collection" }]
+}
+{% endschema %}

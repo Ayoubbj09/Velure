@@ -1,0 +1,30 @@
+<header class="site-header">
+  <div class="page-width site-header__inner">
+    <a class="site-header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+      <span class="site-header__brand">VELURE</span>
+    </a>
+    <nav class="site-header__nav" aria-label="Primary">
+      {% if section.settings.menu != blank %}
+        <ul class="site-header__menu">
+          {% for link in linklists[section.settings.menu].links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </nav>
+    <a class="site-header__cart" href="{{ routes.cart_url }}">Cart</a>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    }
+  ]
+}
+{% endschema %}

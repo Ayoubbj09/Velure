@@ -1,0 +1,16 @@
+<section class="page-width">
+  <h1>Search</h1>
+  {% if search.performed %}
+    {% for item in search.results %}
+      <a href="{{ item.url }}">{{ item.title }}</a>
+    {% endfor %}
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Main search",
+  "settings": [],
+  "presets": [{ "name": "Main search" }]
+}
+{% endschema %}

@@ -1,0 +1,24 @@
+<section class="hero">
+  <div class="page-width hero__inner">
+    <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+    <h1>{{ section.settings.heading }}</h1>
+    <p class="hero__text">{{ section.settings.text }}</p>
+    {% if section.settings.button_label != blank %}
+      <a class="button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home hero",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Premium Korean skincare" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "VELURE" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "A refined Shopify theme foundation for a premium skincare brand." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop the ritual" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "Home hero" }]
+}
+{% endschema %}

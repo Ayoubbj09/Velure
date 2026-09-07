@@ -1,0 +1,24 @@
+<section class="page-width">
+  <h1>Cart</h1>
+  {% if cart.item_count > 0 %}
+    <form action="{{ routes.cart_url }}" method="post">
+      {% for item in cart.items %}
+        <div class="cart-item">
+          <p>{{ item.product.title }}</p>
+          <p>{{ item.quantity }}</p>
+        </div>
+      {% endfor %}
+      <button type="submit" name="checkout" class="button">Checkout</button>
+    </form>
+  {% else %}
+    <p>Your cart is empty.</p>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Main cart",
+  "settings": [],
+  "presets": [{ "name": "Main cart" }]
+}
+{% endschema %}

@@ -1,0 +1,23 @@
+[
+  {
+    "name": "VELURE theme",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Brand"
+      },
+      {
+        "type": "text",
+        "id": "brand_name",
+        "label": "Brand name",
+        "default": "VELURE"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Accent color",
+        "default": "#d8b3b0"
+      }
+    ]
+  }
+]

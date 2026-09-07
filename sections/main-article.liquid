@@ -1,0 +1,14 @@
+<section class="page-width rte">
+  <article>
+    <h1>{{ article.title }}</h1>
+    {{ article.content }}
+  </article>
+</section>
+
+{% schema %}
+{
+  "name": "Main article",
+  "settings": [],
+  "presets": [{ "name": "Main article" }]
+}
+{% endschema %}

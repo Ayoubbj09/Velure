@@ -1,0 +1,24 @@
+<section class="page-width product-template">
+  {% if product != blank %}
+    <div class="product-template__grid">
+      <div>
+        {{ product.featured_image | image_url: width: 1200 | image_tag: class: 'product-template__image' }}
+      </div>
+      <div>
+        <p class="eyebrow">VELURE</p>
+        <h1>{{ product.title }}</h1>
+        <div class="rte">{{ product.description }}</div>
+      </div>
+    </div>
+  {% else %}
+    <h1>Product</h1>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Main product",
+  "settings": [],
+  "presets": [{ "name": "Main product" }]
+}
+{% endschema %}
