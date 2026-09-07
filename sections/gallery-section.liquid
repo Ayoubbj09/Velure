@@ -1,0 +1,18 @@
+<section class="section page-width gallery">
+  <div class="section-heading">
+    <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2>{{ section.settings.heading }}</h2>
+  </div>
+  <div class="gallery__grid">
+    {% for block in section.blocks %}
+      <figure class="gallery__tile" {{ block.shopify_attributes }}>
+        {% if block.settings.image != blank %}
+          {{ block.settings.image | image_url: width: 1200 | image_tag: class: 'gallery__image', loading: 'lazy' }}
+        {% else %}
+          <div class="hero__placeholder" style="min-height:260px;"><strong>Image slot</strong><span>Add a gallery image.</span></div>
+        {% endif %}
+      </figure>
+    {% endfor %}
+  </div>
+</section>
+{% schema %}{ "name": "Product gallery", "settings": [{ "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "PRODUCT GALLERY" }, { "type": "text", "id": "heading", "label": "Heading", "default": "A closer look." }], "blocks": [{ "type": "image", "name": "Image", "settings": [{ "type": "image_picker", "id": "image", "label": "Image" }] }], "presets": [{ "name": "Product gallery", "blocks": [{ "type": "image" }, { "type": "image" }, { "type": "image" }, { "type": "image" }] }] }{% endschema %}

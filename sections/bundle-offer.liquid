@@ -1,0 +1,17 @@
+<section class="section page-width bundle">
+  <div class="section-heading">
+    <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2>{{ section.settings.heading }}</h2>
+  </div>
+  <div class="bundle__grid">
+    {% for block in section.blocks %}
+      <article class="bundle__option" {{ block.shopify_attributes }}>
+        {% if block.settings.badge != blank %}<span class="badge">{{ block.settings.badge }}</span>{% endif %}
+        <h3>{{ block.settings.title }}</h3>
+        <p>{{ block.settings.subtitle }}</p>
+        {% if block.settings.product != blank %}<a class="button button--ghost" href="{{ block.settings.product.url }}">View product</a>{% endif %}
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% schema %}{ "name": "Bundle offer", "settings": [{ "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "MAKE IT A RITUAL." }, { "type": "text", "id": "heading", "label": "Heading", "default": "MAKE IT A RITUAL." }], "blocks": [{ "type": "option", "name": "Bundle option", "settings": [{ "type": "product", "id": "product", "label": "Product" }, { "type": "text", "id": "title", "label": "Title", "default": "Single" }, { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "One balm for everyday use." }, { "type": "text", "id": "badge", "label": "Badge", "default": "" }] }], "presets": [{ "name": "Bundle offer", "blocks": [{ "type": "option" }, { "type": "option" }, { "type": "option" }] }] }{% endschema %}

@@ -1,8 +1,8 @@
 <section class="section page-width collection">
-  <header class="collection__header">
+  <header class="section-heading collection__header">
     <p class="eyebrow">VELURE</p>
     <h1>{{ collection.title }}</h1>
-    {% if collection.description != blank %}<div class="rte">{{ collection.description }}</div>{% endif %}
+    {% if collection.description != blank %}<div class="rte section-copy">{{ collection.description }}</div>{% endif %}
   </header>
   {% paginate collection.products by 12 %}
     <div class="product-grid">
@@ -16,10 +16,10 @@
         </a>
       {% endfor %}
     </div>
-    {{ paginate | default_pagination }}
+    <div class="section-heading">{{ paginate | default_pagination }}</div>
   {% endpaginate %}
 </section>
 
 {% schema %}
-{"name":"Main collection","settings":[],"presets":[{"name":"Main collection"}]}
+{ "name": "Main collection", "settings": [], "presets": [{ "name": "Main collection" }] }
 {% endschema %}
