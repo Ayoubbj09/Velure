@@ -5,7 +5,7 @@
     <p class="section-copy">{{ section.settings.text }}</p>
     {% if section.settings.button_label != blank %}<a class="button button--solid" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>{% endif %}
   </div>
-  {% assign cta_image = 'images/imagenn 7.png' | asset_url %}
+  {% assign cta_image = 'imagenn-7.png' | asset_url %}
   {% if section.settings.image != blank %}{% assign cta_image = section.settings.image | image_url: width: 1400 %}{% endif %}
   <div class="final-cta__media">
     <img class="final-cta__image" src="{{ cta_image }}" width="1024" height="1536" loading="lazy" decoding="async" alt="{{ section.settings.heading | escape }}">

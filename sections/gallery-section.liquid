@@ -4,9 +4,9 @@
     <h2>{{ section.settings.heading }}</h2>
   </div>
   <div class="gallery__grid">
-    {% assign texture_image = 'images/imagenn 3.png' | asset_url %}
-    {% assign application_image = 'images/imagenn 4.png' | asset_url %}
-    {% assign ingredients_image = 'images/imagenn 5.png' | asset_url %}
+    {% assign texture_image = 'imagenn-3.png' | asset_url %}
+    {% assign application_image = 'imagenn-4.png' | asset_url %}
+    {% assign ingredients_image = 'imagenn-5.png' | asset_url %}
     {% if section.settings.texture_image != blank %}{% assign texture_image = section.settings.texture_image | image_url: width: 1400 %}{% endif %}
     {% if section.settings.application_image != blank %}{% assign application_image = section.settings.application_image | image_url: width: 1400 %}{% endif %}
     {% if section.settings.ingredients_image != blank %}{% assign ingredients_image = section.settings.ingredients_image | image_url: width: 1400 %}{% endif %}
