@@ -4,9 +4,10 @@
     "gallery": { "type": "gallery-section" },
     "editorial_copy": { "type": "editorial-copy" },
     "featured_product": { "type": "featured-product" },
+    "how_to_use": { "type": "how-to-use" },
     "bundle_offer": { "type": "bundle-offer" },
     "faq": { "type": "faq-accordion" },
     "final_cta": { "type": "final-cta" }
   },
-  "order": ["main", "gallery", "editorial_copy", "featured_product", "bundle_offer", "faq", "final_cta"]
+  "order": ["main", "gallery", "editorial_copy", "featured_product", "how_to_use", "bundle_offer", "faq", "final_cta"]
 }

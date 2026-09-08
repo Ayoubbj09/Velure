@@ -4,9 +4,13 @@
     <div class="product__grid">
       <div class="product__media">
         <div class="product__media-stage">
-          {% if featured.featured_image %}
-            {{ featured.featured_image | image_url: width: 1600 | image_tag: class: 'product__image', loading: 'lazy' }}
+          {% assign product_image = 'images/imagenn 2.png' | asset_url %}
+          {% if section.settings.image != blank %}
+            {% assign product_image = section.settings.image | image_url: width: 1600 %}
+          {% elsif featured.featured_image %}
+            {% assign product_image = featured.featured_image | image_url: width: 1600 %}
           {% endif %}
+          {{ product_image | image_tag: class: 'product__image', loading: 'lazy', alt: featured.title }}
         </div>
       </div>
       <div class="product__info">
@@ -22,4 +26,4 @@
     </div>
   {% endif %}
 </section>
-{% schema %}{ "name": "Featured product", "settings": [{ "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FEATURED PRODUCT" }, { "type": "product", "id": "product", "label": "Product" }], "presets": [{ "name": "Featured product" }] }{% endschema %}
+{% schema %}{ "name": "Featured product", "settings": [{ "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FEATURED PRODUCT" }, { "type": "product", "id": "product", "label": "Product" }, { "type": "image_picker", "id": "image", "label": "Product showcase image" }], "presets": [{ "name": "Featured product" }] }{% endschema %}

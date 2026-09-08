@@ -4,15 +4,21 @@
     <h2>{{ section.settings.heading }}</h2>
   </div>
   <div class="gallery__grid">
-    {% for block in section.blocks %}
-      <figure class="gallery__tile" {{ block.shopify_attributes }}>
-        {% if block.settings.image != blank %}
-          {{ block.settings.image | image_url: width: 1200 | image_tag: class: 'gallery__image', loading: 'lazy' }}
-        {% else %}
-          <div class="hero__placeholder" style="min-height:260px;"><strong>Image slot</strong><span>Add a gallery image.</span></div>
-        {% endif %}
-      </figure>
-    {% endfor %}
+    {% assign texture_image = 'images/imagenn 3.png' | asset_url %}
+    {% assign application_image = 'images/imagenn 4.png' | asset_url %}
+    {% assign ingredients_image = 'images/imagenn 5.png' | asset_url %}
+    {% if section.settings.texture_image != blank %}{% assign texture_image = section.settings.texture_image | image_url: width: 1400 %}{% endif %}
+    {% if section.settings.application_image != blank %}{% assign application_image = section.settings.application_image | image_url: width: 1400 %}{% endif %}
+    {% if section.settings.ingredients_image != blank %}{% assign ingredients_image = section.settings.ingredients_image | image_url: width: 1400 %}{% endif %}
+    <figure class="gallery__tile gallery__tile--texture">
+      {{ texture_image | image_tag: class: 'gallery__image', loading: 'lazy', alt: 'Product texture' }}
+    </figure>
+    <figure class="gallery__tile gallery__tile--application">
+      {{ application_image | image_tag: class: 'gallery__image', loading: 'lazy', alt: 'Multi-zone application' }}
+    </figure>
+    <figure class="gallery__tile gallery__tile--ingredients">
+      {{ ingredients_image | image_tag: class: 'gallery__image', loading: 'lazy', alt: 'Product ingredients' }}
+    </figure>
   </div>
 </section>
-{% schema %}{ "name": "Product gallery", "settings": [{ "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "PRODUCT GALLERY" }, { "type": "text", "id": "heading", "label": "Heading", "default": "A closer look." }], "blocks": [{ "type": "image", "name": "Image", "settings": [{ "type": "image_picker", "id": "image", "label": "Image" }] }], "presets": [{ "name": "Product gallery", "blocks": [{ "type": "image" }, { "type": "image" }, { "type": "image" }, { "type": "image" }] }] }{% endschema %}
+{% schema %}{ "name": "Product gallery", "settings": [{ "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "PRODUCT GALLERY" }, { "type": "text", "id": "heading", "label": "Heading", "default": "A closer look." }, { "type": "image_picker", "id": "texture_image", "label": "Texture image" }, { "type": "image_picker", "id": "application_image", "label": "Application image" }, { "type": "image_picker", "id": "ingredients_image", "label": "Ingredients image" }], "presets": [{ "name": "Product gallery" }] }{% endschema %}

@@ -1,0 +1,13 @@
+<section class="section page-width how-to-use">
+  <div class="how-to-use__content">
+    <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2>{{ section.settings.heading }}</h2>
+    <div class="rte section-copy">{{ section.settings.text }}</div>
+  </div>
+  {% assign how_to_use_image = 'images/imagenn 6.png' | asset_url %}
+  {% if section.settings.image != blank %}{% assign how_to_use_image = section.settings.image | image_url: width: 1600 %}{% endif %}
+  <div class="how-to-use__media">
+    {{ how_to_use_image | image_tag: class: 'how-to-use__image', loading: 'lazy', alt: section.settings.heading }}
+  </div>
+</section>
+{% schema %}{ "name": "How to use", "settings": [{ "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "HOW TO USE" }, { "type": "text", "id": "heading", "label": "Heading", "default": "EASY TO APPLY, WHEREVER YOU ARE." }, { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Twist up, glide onto areas that need extra hydration, then blend with your fingertips for a smooth, dewy-looking finish.</p>" }, { "type": "image_picker", "id": "image", "label": "How to use image" }], "presets": [{ "name": "How to use" }] }{% endschema %}

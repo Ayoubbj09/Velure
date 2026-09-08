@@ -1,7 +1,14 @@
 <section class="section page-width final-cta">
-  <p class="eyebrow">{{ section.settings.eyebrow }}</p>
-  <h2>{{ section.settings.heading }}</h2>
-  <p class="section-copy">{{ section.settings.text }}</p>
-  {% if section.settings.button_label != blank %}<a class="button button--solid" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>{% endif %}
+  <div class="final-cta__content">
+    <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2>{{ section.settings.heading }}</h2>
+    <p class="section-copy">{{ section.settings.text }}</p>
+    {% if section.settings.button_label != blank %}<a class="button button--solid" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>{% endif %}
+  </div>
+  {% assign cta_image = 'images/imagenn 7.png' | asset_url %}
+  {% if section.settings.image != blank %}{% assign cta_image = section.settings.image | image_url: width: 1400 %}{% endif %}
+  <div class="final-cta__media">
+    {{ cta_image | image_tag: class: 'final-cta__image', loading: 'lazy', alt: section.settings.heading }}
+  </div>
 </section>
-{% schema %}{ "name": "Final CTA", "settings": [{ "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FINAL CTA" }, { "type": "text", "id": "heading", "label": "Heading", "default": "MAKE GLOW PART OF YOUR EVERYDAY." }, { "type": "textarea", "id": "text", "label": "Text", "default": "A simple step for a more considered skincare ritual." }, { "type": "text", "id": "button_label", "label": "Button label", "default": "SHOP THE BALM" }, { "type": "url", "id": "button_link", "label": "Button link" }], "presets": [{ "name": "Final CTA" }] }{% endschema %}
+{% schema %}{ "name": "Final CTA", "settings": [{ "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FINAL CTA" }, { "type": "text", "id": "heading", "label": "Heading", "default": "MAKE GLOW PART OF YOUR EVERYDAY." }, { "type": "textarea", "id": "text", "label": "Text", "default": "A simple step for a more considered skincare ritual." }, { "type": "text", "id": "button_label", "label": "Button label", "default": "SHOP THE BALM" }, { "type": "url", "id": "button_link", "label": "Button link" }, { "type": "image_picker", "id": "image", "label": "Bundle / final CTA image" }], "presets": [{ "name": "Final CTA" }] }{% endschema %}

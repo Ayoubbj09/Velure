@@ -20,16 +20,11 @@
     </div>
     <div class="hero__media">
       <div class="hero__stage">
+        {% assign hero_image = 'images/imagenn 1.png' | asset_url %}
         {% if section.settings.image != blank %}
-          {{ section.settings.image | image_url: width: 1800 | image_tag: class: 'hero__image', loading: 'eager', widths: '360,540,720,900,1080,1440,1800' }}
-        {% else %}
-          <div class="hero__placeholder">
-            <div>
-              <strong>Hero image missing</strong>
-              <span>Upload a product image in the Theme Editor to complete this stage.</span>
-            </div>
-          </div>
+          {% assign hero_image = section.settings.image | image_url: width: 1800 %}
         {% endif %}
+        {{ hero_image | image_tag: class: 'hero__image', loading: 'eager', widths: '360,540,720,900,1080,1440,1800', alt: section.settings.heading }}
       </div>
     </div>
   </div>
