@@ -24,7 +24,7 @@
         {% if section.settings.image != blank %}
           {% assign hero_image = section.settings.image | image_url: width: 1800 %}
         {% endif %}
-        {{ hero_image | image_tag: class: 'hero__image', loading: 'eager', widths: '360,540,720,900,1080,1440,1800', alt: section.settings.heading }}
+        <img class="hero__image" src="{{ hero_image }}" width="1536" height="1024" loading="eager" decoding="async" alt="{{ section.settings.heading | escape }}">
       </div>
     </div>
   </div>

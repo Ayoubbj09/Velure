@@ -10,7 +10,7 @@
           {% elsif featured.featured_image %}
             {% assign product_image = featured.featured_image | image_url: width: 1600 %}
           {% endif %}
-          {{ product_image | image_tag: class: 'product__image', loading: 'lazy', alt: featured.title }}
+          <img class="product__image" src="{{ product_image }}" width="1024" height="1536" loading="lazy" decoding="async" alt="{{ featured.title | escape }}">
         </div>
       </div>
       <div class="product__info">

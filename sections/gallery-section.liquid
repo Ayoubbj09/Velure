@@ -11,13 +11,13 @@
     {% if section.settings.application_image != blank %}{% assign application_image = section.settings.application_image | image_url: width: 1400 %}{% endif %}
     {% if section.settings.ingredients_image != blank %}{% assign ingredients_image = section.settings.ingredients_image | image_url: width: 1400 %}{% endif %}
     <figure class="gallery__tile gallery__tile--texture">
-      {{ texture_image | image_tag: class: 'gallery__image', loading: 'lazy', alt: 'Product texture' }}
+      <img class="gallery__image" src="{{ texture_image }}" width="1024" height="1536" loading="lazy" decoding="async" alt="Product texture">
     </figure>
     <figure class="gallery__tile gallery__tile--application">
-      {{ application_image | image_tag: class: 'gallery__image', loading: 'lazy', alt: 'Multi-zone application' }}
+      <img class="gallery__image" src="{{ application_image }}" width="1024" height="1536" loading="lazy" decoding="async" alt="Multi-zone application">
     </figure>
     <figure class="gallery__tile gallery__tile--ingredients">
-      {{ ingredients_image | image_tag: class: 'gallery__image', loading: 'lazy', alt: 'Product ingredients' }}
+      <img class="gallery__image" src="{{ ingredients_image }}" width="1024" height="1536" loading="lazy" decoding="async" alt="Product ingredients">
     </figure>
   </div>
 </section>
