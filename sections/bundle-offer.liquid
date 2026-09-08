@@ -1,17 +1,30 @@
 <section class="section page-width bundle">
-  <div class="section-heading">
-    <p class="eyebrow">{{ section.settings.eyebrow }}</p>
-    <h2>{{ section.settings.heading }}</h2>
+  <div class="bundle__media">
+    {% assign bundle_image = 'imagenn-7.png' | asset_url %}
+    {% if section.settings.image != blank %}{% assign bundle_image = section.settings.image | image_url: width: 1400 %}{% endif %}
+    <img src="{{ bundle_image }}" width="1024" height="1536" loading="lazy" decoding="async" alt="{{ section.settings.heading | escape }}">
   </div>
-  <div class="bundle__grid">
-    {% for block in section.blocks %}
-      <article class="bundle__option" {{ block.shopify_attributes }}>
-        {% if block.settings.badge != blank %}<span class="badge">{{ block.settings.badge }}</span>{% endif %}
-        <h3>{{ block.settings.title }}</h3>
-        <p>{{ block.settings.subtitle }}</p>
-        {% if block.settings.product != blank %}<a class="button button--ghost" href="{{ block.settings.product.url }}">View product</a>{% endif %}
-      </article>
-    {% endfor %}
+  <div class="bundle__content">
+    <div class="section-heading">
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2>{{ section.settings.heading }}</h2>
+      <p class="section-copy">{{ section.settings.text }}</p>
+    </div>
+    <div class="bundle__grid">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks limit: 3 %}
+          <article class="bundle__option" {{ block.shopify_attributes }}>
+            {% if block.settings.badge != blank %}<span class="badge">{{ block.settings.badge }}</span>{% endif %}
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.subtitle }}</p>
+            {% if block.settings.product != blank %}<a class="button button--ghost" href="{{ block.settings.product.url }}">Shop now</a>{% endif %}
+          </article>
+        {% endfor %}
+      {% else %}
+        <article class="bundle__option"><h3>Single</h3><p>One balm for the everyday ritual.</p><a class="button button--ghost" href="{{ routes.all_products_collection_url }}">Shop now</a></article>
+        <article class="bundle__option"><h3>Make it yours</h3><p>Choose the routine that fits your day.</p><a class="button button--ghost" href="{{ routes.all_products_collection_url }}">Explore</a></article>
+      {% endif %}
+    </div>
   </div>
 </section>
-{% schema %}{ "name": "Bundle offer", "settings": [{ "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "MAKE IT A RITUAL." }, { "type": "text", "id": "heading", "label": "Heading", "default": "MAKE IT A RITUAL." }], "blocks": [{ "type": "option", "name": "Bundle option", "settings": [{ "type": "product", "id": "product", "label": "Product" }, { "type": "text", "id": "title", "label": "Title", "default": "Single" }, { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "One balm for everyday use." }, { "type": "text", "id": "badge", "label": "Badge", "default": "" }] }], "presets": [{ "name": "Bundle offer", "blocks": [{ "type": "option" }, { "type": "option" }, { "type": "option" }] }] }{% endschema %}
+{% schema %}{ "name": "Bundle offer", "settings": [{ "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "CHOOSE YOUR RITUAL" }, { "type": "text", "id": "heading", "label": "Heading", "default": "CHOOSE YOUR RITUAL" }, { "type": "textarea", "id": "text", "label": "Text", "default": "Make it part of your everyday skincare routine." }, { "type": "image_picker", "id": "image", "label": "Bundle image" }], "blocks": [{ "type": "option", "name": "Bundle option", "settings": [{ "type": "product", "id": "product", "label": "Product" }, { "type": "text", "id": "title", "label": "Title", "default": "Single" }, { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "One balm for the everyday ritual." }, { "type": "text", "id": "badge", "label": "Badge", "default": "" }] }], "presets": [{ "name": "Bundle offer", "blocks": [{ "type": "option" }, { "type": "option" }] }] }{% endschema %}

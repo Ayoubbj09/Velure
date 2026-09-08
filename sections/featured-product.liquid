@@ -1,29 +1,29 @@
 <section class="section page-width featured-product">
   {% assign featured = section.settings.product %}
-  {% if featured != blank %}
-    <div class="product__grid">
-      <div class="product__media">
-        <div class="product__media-stage">
-          {% assign product_image = 'imagenn-2.png' | asset_url %}
-          {% if section.settings.image != blank %}
-            {% assign product_image = section.settings.image | image_url: width: 1600 %}
-          {% elsif featured.featured_image %}
-            {% assign product_image = featured.featured_image | image_url: width: 1600 %}
-          {% endif %}
-          <img class="product__image" src="{{ product_image }}" width="1024" height="1536" loading="lazy" decoding="async" alt="{{ featured.title | escape }}">
-        </div>
+  <div class="product__grid">
+    <div class="product__media">
+      <div class="product__media-stage">
+        {% assign product_image = 'imagenn-2.png' | asset_url %}
+        {% if section.settings.image != blank %}{% assign product_image = section.settings.image | image_url: width: 1600 %}{% endif %}
+        <img class="product__image" src="{{ product_image }}" width="1024" height="1536" loading="lazy" decoding="async" alt="{{ section.settings.heading | escape }}">
       </div>
-      <div class="product__info">
-        <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+    </div>
+    <div class="product__info">
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      {% if featured != blank %}
         <h2>{{ featured.title }}</h2>
         <div class="price">
           <span>{{ featured.price | money }}</span>
           {% if featured.compare_at_price_max > featured.price %}<s>{{ featured.compare_at_price_max | money }}</s>{% endif %}
         </div>
         <div class="rte">{{ featured.description }}</div>
-        <a class="button button--solid" href="{{ featured.url }}">View product</a>
-      </div>
+        <a class="button button--solid" href="{{ featured.url }}">Shop now</a>
+      {% else %}
+        <h2>{{ section.settings.heading }}</h2>
+        <p class="section-copy">A compact multi-zone balm for lightweight hydration and a fresh, dewy-looking finish.</p>
+        <a class="button button--solid" href="{{ routes.all_products_collection_url }}">Shop now</a>
+      {% endif %}
     </div>
-  {% endif %}
+  </div>
 </section>
-{% schema %}{ "name": "Featured product", "settings": [{ "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "FEATURED PRODUCT" }, { "type": "product", "id": "product", "label": "Product" }, { "type": "image_picker", "id": "image", "label": "Product showcase image" }], "presets": [{ "name": "Featured product" }] }{% endschema %}
+{% schema %}{ "name": "Featured product", "settings": [{ "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "THE EVERYDAY GLOW BALM" }, { "type": "text", "id": "heading", "label": "Heading", "default": "THE EVERYDAY GLOW BALM" }, { "type": "product", "id": "product", "label": "Product" }, { "type": "image_picker", "id": "image", "label": "Product showcase image" }], "presets": [{ "name": "Featured product" }] }{% endschema %}

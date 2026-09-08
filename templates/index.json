@@ -1,13 +1,46 @@
 {
   "sections": {
-    "main": { "type": "main-home" },
-    "gallery": { "type": "gallery-section" },
-    "editorial_copy": { "type": "editorial-copy" },
+    "main": {
+      "type": "main-home",
+      "blocks": {
+        "benefit_1": { "type": "benefit", "settings": { "title": "Hydrating", "text": "Lightweight hydration wherever you need it." } },
+        "benefit_2": { "type": "benefit", "settings": { "title": "Dewy finish", "text": "Leaves skin looking fresh and dewy." } },
+        "benefit_3": { "type": "benefit", "settings": { "title": "Multi-zone", "text": "Easy to apply across multiple areas." } }
+      },
+      "block_order": ["benefit_1", "benefit_2", "benefit_3"]
+    },
     "featured_product": { "type": "featured-product" },
-    "how_to_use": { "type": "how-to-use" },
-    "bundle_offer": { "type": "bundle-offer" },
-    "faq": { "type": "faq-accordion" },
+    "how_to_use": {
+      "type": "how-to-use",
+      "blocks": {
+        "step_1": { "type": "step", "settings": { "title": "Swipe", "text": "Twist up the balm." } },
+        "step_2": { "type": "step", "settings": { "title": "Apply", "text": "Glide onto the areas you need." } },
+        "step_3": { "type": "step", "settings": { "title": "Blend", "text": "Finish with your fingertips." } }
+      },
+      "block_order": ["step_1", "step_2", "step_3"]
+    },
+    "editorial_copy": { "type": "editorial-copy" },
+    "bundle_offer": {
+      "type": "bundle-offer",
+      "blocks": {
+        "option_1": { "type": "option", "settings": { "title": "Single", "subtitle": "One balm for the everyday ritual." } },
+        "option_2": { "type": "option", "settings": { "title": "Make it yours", "subtitle": "Choose the routine that fits your day." } }
+      },
+      "block_order": ["option_1", "option_2"]
+    },
+    "faq": {
+      "type": "faq-accordion",
+      "blocks": {
+        "faq_1": { "type": "qa", "settings": { "question": "What is the PDRN Pink Collagen Multi Balm?", "answer": "A compact multi-zone balm for lightweight hydration and a fresh, dewy-looking finish." } },
+        "faq_2": { "type": "qa", "settings": { "question": "How do I use it?", "answer": "Twist up, glide onto the areas you need, then blend with your fingertips." } },
+        "faq_3": { "type": "qa", "settings": { "question": "Where can I apply it?", "answer": "Use it across the areas that need an easy touch of hydration as part of your everyday ritual." } },
+        "faq_4": { "type": "qa", "settings": { "question": "Is it suitable for everyday use?", "answer": "It is designed as an easy-to-apply everyday skincare step. Follow the product packaging for personal use guidance." } },
+        "faq_5": { "type": "qa", "settings": { "question": "How should I store it?", "answer": "Keep the balm closed and store it according to the product packaging guidance." } },
+        "faq_6": { "type": "qa", "settings": { "question": "What about shipping and returns?", "answer": "Shipping and returns are handled according to the store policies available at checkout and in the footer." } }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5", "faq_6"]
+    },
     "final_cta": { "type": "final-cta" }
   },
-  "order": ["main", "gallery", "editorial_copy", "featured_product", "how_to_use", "bundle_offer", "faq", "final_cta"]
+  "order": ["main", "featured_product", "how_to_use", "editorial_copy", "bundle_offer", "faq", "final_cta"]
 }

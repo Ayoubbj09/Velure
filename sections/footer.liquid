@@ -1,18 +1,21 @@
-<footer class="site-footer section">
+<footer class="site-footer">
   <div class="page-width site-footer__inner">
     <div>
       <p class="site-footer__brand">VELURE</p>
-      <p>{{ section.settings.tagline }}</p>
+      <p class="site-footer__text">{{ section.settings.tagline }}</p>
     </div>
-    <div class="site-footer__links">
-      <a href="/collections/all">Shop</a>
+    <nav class="site-footer__links" aria-label="Footer">
+      <a href="{{ routes.all_products_collection_url }}">Shop</a>
       <a href="/pages/about">About</a>
       <a href="/pages/faq">FAQ</a>
       <a href="/pages/contact">Contact</a>
-      <a href="{{ routes.search_url }}">Search</a>
-      <a href="{{ routes.cart_url }}">Cart</a>
-    </div>
+      <a href="{{ routes.privacy_policy_url }}">Privacy</a>
+      <a href="{{ routes.terms_of_service_url }}">Terms</a>
+      <a href="{{ routes.shipping_policy_url }}">Shipping</a>
+      <a href="{{ routes.refund_policy_url }}">Returns</a>
+    </nav>
   </div>
+  <div class="page-width site-footer__bottom"><span>{{ shop.name }}</span><span>&copy; {{ 'now' | date: '%Y' }}</span></div>
 </footer>
 
 {% schema %}

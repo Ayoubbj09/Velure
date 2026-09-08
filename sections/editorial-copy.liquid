@@ -1,15 +1,13 @@
 <section class="section page-width hero-copy">
-  <div>
+  <div class="hero-copy__content">
     <p class="eyebrow">{{ section.settings.eyebrow }}</p>
     <h2>{{ section.settings.heading }}</h2>
     <div class="rte section-copy">{{ section.settings.text }}</div>
   </div>
-  <div>
-    {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 1400 | image_tag: class: 'hero-copy__image', loading: 'lazy' }}
-    {% else %}
-      <div class="hero__placeholder" style="min-height:420px;"><strong>Image missing</strong><span>Add a product image here for the editorial layout.</span></div>
-    {% endif %}
+  <div class="hero-copy__media">
+    {% assign ritual_image = 'imagenn-3.png' | asset_url %}
+    {% if section.settings.image != blank %}{% assign ritual_image = section.settings.image | image_url: width: 1400 %}{% endif %}
+    <img class="hero-copy__image" src="{{ ritual_image }}" width="1024" height="1536" loading="lazy" decoding="async" alt="{{ section.settings.heading | escape }}">
   </div>
 </section>
-{% schema %}{ "name": "Editorial copy", "settings": [{ "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "THE ESSENTIAL, REFINED." }, { "type": "text", "id": "heading", "label": "Heading", "default": "ONE BALM. MANY MOMENTS." }, { "type": "textarea", "id": "text", "label": "Text", "default": "Keep your skincare ritual close with a compact balm designed for easy application whenever your skin needs a little extra hydration." }, { "type": "image_picker", "id": "image", "label": "Image" }], "presets": [{ "name": "Editorial copy" }] }{% endschema %}
+{% schema %}{ "name": "Editorial copy", "settings": [{ "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "THE RITUAL" }, { "type": "text", "id": "heading", "label": "Heading", "default": "THE RITUAL, SIMPLIFIED." }, { "type": "textarea", "id": "text", "label": "Text", "default": "A considered step for lightweight hydration, wherever the day takes you." }, { "type": "image_picker", "id": "image", "label": "Image" }], "presets": [{ "name": "Editorial copy" }] }{% endschema %}

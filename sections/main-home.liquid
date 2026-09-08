@@ -3,13 +3,14 @@
     <div class="hero__content">
       <p class="eyebrow">{{ section.settings.eyebrow }}</p>
       <h1>{{ section.settings.heading }}</h1>
+      <p class="hero__product">PDRN Pink Collagen Multi Balm</p>
       <p class="hero__text">{{ section.settings.subheading }}</p>
       <div class="hero__actions">
         {% if section.settings.button_label != blank %}
-          <a class="button button--solid" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+          <a class="button button--solid" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label }}</a>
         {% endif %}
         {% if section.settings.secondary_button_label != blank %}
-          <a class="button button--ghost" href="{{ section.settings.secondary_button_link }}">{{ section.settings.secondary_button_label }}</a>
+          <a class="button button--ghost" href="{{ section.settings.secondary_button_link | default: routes.root_url }}">{{ section.settings.secondary_button_label }}</a>
         {% endif %}
       </div>
       <div class="hero__meta">
@@ -32,8 +33,8 @@
 
 <section class="trust">
   <div class="page-width trust__row">
-    <div class="trust__item">5% PDRN</div>
     <div class="trust__item">Lightweight hydration</div>
+    <div class="trust__item">Easy application</div>
     <div class="trust__item">Multi-zone</div>
     <div class="trust__item">On-the-go</div>
   </div>
@@ -41,17 +42,23 @@
 
 <section class="section page-width">
   <div class="section-heading">
-    <p class="eyebrow">THE ESSENTIAL, REFINED.</p>
-    <h2>WHY IT BELONGS IN YOUR ROUTINE.</h2>
+    <p class="eyebrow">THE VELURE APPROACH</p>
+    <h2>WHY VELURE</h2>
   </div>
   <div class="benefits__grid">
-    {% for block in section.blocks %}
-      <article class="benefit" {{ block.shopify_attributes }}>
-        <div class="benefit__index">0{{ forloop.index }}</div>
-        <h3>{{ block.settings.title }}</h3>
-        <p>{{ block.settings.text }}</p>
-      </article>
-    {% endfor %}
+    {% if section.blocks.size > 0 %}
+      {% for block in section.blocks limit: 3 %}
+        <article class="benefit" {{ block.shopify_attributes }}>
+          <div class="benefit__index">0{{ forloop.index }}</div>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </article>
+      {% endfor %}
+    {% else %}
+      <article class="benefit"><div class="benefit__index">01</div><h3>Hydrating</h3><p>Lightweight hydration wherever you need it.</p></article>
+      <article class="benefit"><div class="benefit__index">02</div><h3>Dewy finish</h3><p>Leaves skin looking fresh and dewy.</p></article>
+      <article class="benefit"><div class="benefit__index">03</div><h3>Multi-zone</h3><p>Easy to apply across multiple areas.</p></article>
+    {% endif %}
   </div>
 </section>
 
